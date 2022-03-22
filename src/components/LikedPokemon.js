@@ -5,7 +5,7 @@ import GalleryRow from "./GalleryRow";
 const LikedPokemon = () => {
     return (
         <>
-            <GalleryTitle />
+            <GalleryTitle isLikedList/>
             <GalleryRow />
         </>
     );
