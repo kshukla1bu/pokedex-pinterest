@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/PokemonCard.css'
 import Card from "./Card";
+import {generateRandomColor} from "../utils/Utilities";
 
 const PokemonCard = ({pokemonObj}) => {
     const [pokemonData, setPokemonData] = useState({})
@@ -29,7 +30,7 @@ const PokemonCard = ({pokemonObj}) => {
     }, )
 
     return (
-        <div className={'pokemonCard'}>
+        <div className={'pokemonCard'} style={{backgroundColor:generateRandomColor()}}>
             { pokemonData ?
                 <>
             <Card pokemonData={pokemonData}/>
