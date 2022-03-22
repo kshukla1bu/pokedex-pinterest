@@ -3,7 +3,7 @@ import CardButton from "./CardButton";
 import '../styles/Card.css'
 import pokemonDefault from '../assets/pokemon-default.png'
 
-const Card = ({pokemonData}) => {
+const Card = ({ pokemonData }) => {
     return (
         <div className={'card'}>
             <img src={pokemonData.front_img || pokemonDefault} alt={'pokemon'}/>

@@ -3,7 +3,7 @@ import '../styles/PokemonCard.css'
 import Card from "./Card";
 import {generateRandomColor} from "../utils/Utilities";
 
-const PokemonCard = ({pokemonObj}) => {
+const PokemonCard = ({ pokemonObj }) => {
     const [pokemonData, setPokemonData] = useState({})
     const [error, setError] = useState([])
 
