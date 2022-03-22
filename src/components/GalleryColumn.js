@@ -2,7 +2,7 @@ import React from 'react';
 import GalleryRow from "./GalleryRow";
 import '../styles/GalleryColumn.css'
 
-const GalleryColumn = ({pokemonList}) => {
+const GalleryColumn = ({pokemonList, loadMorePokemon}) => {
     let rowElements = []
     const getGalleryRow = () => {
         for(let i = 0; i < pokemonList.length; i+=3){
@@ -14,7 +14,16 @@ const GalleryColumn = ({pokemonList}) => {
 
     return (
         <div className={'gColumn'}>
-            {getGalleryRow()}
+            {
+                getGalleryRow()
+            }{
+                rowElements.length > 0 &&
+            <button
+                onClick={loadMorePokemon}
+                style={{marginBottom:'1rem', marginTop:'0.5rem'}}>
+                Load More
+            </button>
+            }
         </div>
     );
 };

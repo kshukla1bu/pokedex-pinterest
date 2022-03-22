@@ -1,4 +1,7 @@
 .gTitle {
     border: solid black 2px;
     height: 4rem;
+    margin-top: 1rem;
+    color: aliceblue;
+    background-color: brown;
 }

@@ -1,5 +1,7 @@
 .gColumn {
     margin: 0 15rem;
+    max-height: 56rem;
+    overflow-y: scroll;
     width: auto;
     border: chartreuse solid 2px;
 }
