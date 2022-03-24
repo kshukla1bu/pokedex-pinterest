@@ -1,12 +1,19 @@
 import React from 'react';
 import GalleryTitle from "./GalleryTitle";
-import GalleryRow from "./GalleryRow";
+import GalleryColumn from "./GalleryColumn";
 
-const LikedPokemon = () => {
+const LikedPokemon = ({ likedList, setLikedList, setShowPokemon, setModalOpen }) => {
+
     return (
         <>
             <GalleryTitle isLikedList/>
-            <GalleryRow />
+            <GalleryColumn
+                likedList={likedList}
+                pokemonList={likedList}
+                setModalOpen={setModalOpen}
+                setLikedList={setLikedList}
+                setShowPokemon={setShowPokemon}
+            />
         </>
     );
 };

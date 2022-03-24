@@ -1,9 +1,13 @@
 import React from 'react';
 
-const CardButton = ({ isLike }) => {
+const CardButton = ({ isLike, onClick }) => {
     return (
         <div>
-            {isLike ? <button>Like</button> : <button>Dislike</button>}
+            {
+                isLike ?
+                <button onClick={onClick}>Like</button> :
+                <button onClick={onClick}>Dislike</button>
+            }
         </div>
     );
 };

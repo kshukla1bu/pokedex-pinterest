@@ -3,7 +3,7 @@ import GalleryTitle from "./GalleryTitle";
 import GalleryColumn from "./GalleryColumn";
 import {randomIntFromInterval} from "../utils/Utilities";
 
-const YouMightLike = () => {
+const YouMightLike = ({ likedList, setLikedList, setModalOpen, setShowPokemon }) => {
     const [youMayLikeList, setYouMayLikeList] = useState([])
     const [error, setError] = useState([])
 
@@ -37,8 +37,13 @@ const YouMightLike = () => {
                 <>
                     <GalleryTitle/>
                     <GalleryColumn
+                        likedList={likedList}
+                        setModalOpen={setModalOpen}
+                        setLikedList={setLikedList}
                         pokemonList={youMayLikeList}
+                        setShowPokemon={setShowPokemon}
                         loadMorePokemon={loadMorePokemon}
+                        setYouMayLikeList={setYouMayLikeList}
                     />
                 </> : <p>{error}</p>
         }

@@ -3,12 +3,51 @@ import '../styles/PokemonCard.css'
 import Card from "./Card";
 import {generateRandomColor} from "../utils/Utilities";
 
-const PokemonCard = ({ pokemonObj }) => {
+const PokemonCard = ({
+                         likedList,
+                         pokemonObj,
+                         pokemonList,
+                         setLikedList,
+                         setModalOpen,
+                         setShowPokemon,
+                         setYouMayLikeList
+}) => {
     const [pokemonData, setPokemonData] = useState({})
     const [error, setError] = useState([])
 
+    const onLike = (e) => {
+        e.stopPropagation()
+        const likedItem = pokemonList.find(o => o.name === pokemonData.name)
+        setLikedList([...likedList, likedItem])
+        setYouMayLikeList(pokemonList.filter(item => item.name !== likedItem.name))
+
+    }
+
+    const onDisLike = (e) => {
+        e.stopPropagation()
+        if(setYouMayLikeList!==undefined) {
+            setYouMayLikeList(pokemonList.filter(item => item.name !== pokemonData.name))
+        } else {
+            setLikedList(likedList.filter(item => item.name !== pokemonData.name))
+        }
+    }
+
+    const cardOnClick = () => {
+        setModalOpen()
+        setShowPokemon({
+            name: pokemonData.name,
+            baseExp: pokemonData.baseExp,
+            height: pokemonData.height,
+            front_img: pokemonData.front_img,
+            front_shiny: pokemonData.front_shiny,
+            weight: pokemonData.weight,
+            type: pokemonData.type,
+        })
+    }
 
     useEffect(() => {
+        console.log('pokemonObj -->', pokemonObj)
+        console.log('pokemonData ==>', pokemonData)
         if(pokemonObj.url && !pokemonData.name) {
             fetch(pokemonObj.url).then(response => {
                 if (response.status === 200)
@@ -19,25 +58,34 @@ const PokemonCard = ({ pokemonObj }) => {
                         baseExp: data.base_experience,
                         height: data.height,
                         front_img: data.sprites.front_default,
+                        front_shiny: data.sprites.front_shiny,
                         weight: data.weight,
                         type: data.types[0].type.name
                     })
-                },
-                (err) => {
+                }, (err) => {
                     setError(err)
-                })
-        }
-    }, )
+                })}}, )
 
     return (
-        <div className={'pokemonCard'} style={{backgroundColor:generateRandomColor()}}>
+        <>
+        <div
+            className={'pokemonCard'}
+            style={{backgroundColor:generateRandomColor()}}
+            onClick={cardOnClick}
+        >
             { pokemonData ?
                 <>
-            <Card pokemonData={pokemonData}/>
+            <Card
+                pokemonData={pokemonData}
+                onDisLike={onDisLike}
+                onLike={onLike}
+                forLike={!setYouMayLikeList}
+            />
                     </> :
                 <p>{error}</p>
             }
         </div>
+        </>
     );
 };
 
