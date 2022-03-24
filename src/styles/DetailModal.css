@@ -1,0 +1,13 @@
+.rListDiv {
+    display: flex;
+}
+
+.modalCloseDiv{
+    display: block;
+    height: 3rem;
+}
+
+.modalCloseButton {
+    float: right;
+    height: 2.5rem;
+}

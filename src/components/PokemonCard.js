@@ -4,6 +4,7 @@ import Card from "./Card";
 import {generateRandomColor} from "../utils/Utilities";
 
 const PokemonCard = ({
+                         modalList,
                          likedList,
                          pokemonObj,
                          pokemonList,
@@ -46,8 +47,6 @@ const PokemonCard = ({
     }
 
     useEffect(() => {
-        console.log('pokemonObj -->', pokemonObj)
-        console.log('pokemonData ==>', pokemonData)
         if(pokemonObj.url && !pokemonData.name) {
             fetch(pokemonObj.url).then(response => {
                 if (response.status === 200)
@@ -78,6 +77,7 @@ const PokemonCard = ({
             <Card
                 pokemonData={pokemonData}
                 onDisLike={onDisLike}
+                modalList={modalList}
                 onLike={onLike}
                 forLike={!setYouMayLikeList}
             />

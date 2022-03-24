@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import pokemonDefault from '../assets/pokemon-default.png'
 import PokemonCard from "./PokemonCard";
+import GalleryTitle from "./GalleryTitle";
+import '../styles/DetailModal.css'
 
 const DetailModal = ({
                          setModalClose,
@@ -19,21 +21,28 @@ const DetailModal = ({
             (err) => {
                 setError(err)
             })
-    },[])
-
-    console.log("ANimation -->", recommendList)
+    },[showPokemon.type])
 
     const getRecommendedList = () => {
         let recList = []
         for(let i = 0; i<recommendList.length; i++)
         {
-            recList.push(<PokemonCard key={i} pokemonObj={recommendList[i]} />)
+            recList.push(<PokemonCard
+                key={i}
+                modalList
+                pokemonList={recommendList}
+                pokemonObj={recommendList[i].pokemon} />)
         }
         return recList
     }
 
     return (
         <div>
+            <div className={'modalCloseDiv'}>
+                <button
+                className={'modalCloseButton'}
+                onClick={setModalClose}>CLOSE[X]</button>
+            </div>
             <div>
             <img
                 src={showPokemon.front_img || pokemonDefault}
@@ -51,8 +60,7 @@ const DetailModal = ({
             <p>{'Base Exp: '+showPokemon.baseExp}</p>
             <p>{'Height: '+showPokemon.height}</p>
             <p>{'Weight: '+showPokemon.weight}</p>
-            <button onClick={setModalClose}>Close</button>
-
+            <GalleryTitle modalTitle />
             <div className={'rListDiv'}>
                 {
                     getRecommendedList()
